@@ -1,0 +1,25 @@
+{
+    "name": "windwalker/dom",
+    "type": "windwalker-package",
+    "description": "Windwalker Dom package",
+    "keywords": ["windwalker", "framework", "filesystem"],
+    "homepage": "https://github.com/ventoviro/windwalker-dom",
+    "license": "LGPL-2.0-or-later",
+    "require": {
+        "php": ">=7.1.3"
+    },
+    "require-dev": {
+        "windwalker/test": "~3.0"
+    },
+    "minimum-stability": "beta",
+    "autoload": {
+        "psr-4": {
+            "Windwalker\\Dom\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.x-dev"
+        }
+    }
+}
