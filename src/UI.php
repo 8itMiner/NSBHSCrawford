@@ -1,5 +1,10 @@
 <?php
   require_once('./parse.php');
+  require_once('./../main.php');
+
+  // HTML DOM LOADER
+  use Windwalker\Dom\DomElement;
+
 
   class UI {
     
@@ -48,13 +53,82 @@
             "day" => $dataOBJ["day"]
           ));
         }
-        
         // Addd the data for today to the template
         array_push($template["raw_data"], $scoreOBJ);
       }
+      return $template;  
+    }
+    
+    
+    
+    
+    
+    // generateUI generates a user interface from the code JSON dump data 
+    public static function generateUI(string $json) {
+      $template = UI.generateTemplate($json);
+      $htmlData = array();
+      $categories = array();
+      
+      // Generate a list of categories
+      for ($template["categories"] as $category) {
+        $titleAttrs = array('class' => 'categoryTitle', 'id' => $category);
+        $divAttrs = array('class' => 'categoryBox', 'id' => $category + 'box');
+        
+        $categories[$category] = new HTMLElement('div', array(new HTMLElement('p', $category, $titleAttrs)), $divAttrs);
+      }
+      
+      // First bild a bunch of HTNML day DOM elements
+      for ($template["days"] as $dayID) {
+        $htmlData[$dayID] = new DomElement('div',
+                                           array(new DomElement('p', 'Day: ' + string($dayID)), null);
+      }
+      
+      // Add all the data now
+      for ($template["raw_data"] as $dataBlock) {
+          // Build the data
+          $dataBlockInner = new HTMLElements(
+              array(
+                new HTMLElement('p', "Melbourne High School: {$dataBlock["Melbourne High School"]}", array("class"=>"melb-score")),
+                new HTMLElement('p', "North Sydney Boys High School: {$dataBlock["North Sydney Boys High School"]}", array("class"=>"nth-syd-score", "id"=>"data-{$dataBlock["day"]}-{$dataBlock["category"]}")),
+                new HTMLElement('p', "{$template["Winner"]}", array("class"=>"winner"))
+              )
+          );
+        
+        
+        $rawDivData = new HTMLElement('div', $dataBlockInner, array("class"=>"dataBlock", "id"=>"data-{$dataBlock["day"]}-{$dataBlock["category"]}"))
+        
+        
+      }                                 
+                                           
+                                           
+      
+      $dom  = new DomElement('div', array('id' => 'holder', 'class' => holder))
     }
    
-    return $template;  
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
