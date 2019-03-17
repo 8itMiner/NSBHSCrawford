@@ -1,19 +1,13 @@
 <?php
-	if (isset($_COOKIE["logged_in"])) {
-		header('Location: admin_portal.php');
+	if (!isset($_REQUEST["dest_dir"])) {
+		header("Location: admin_portal");
 	}
-	
-
 
 	if (isset($_POST["password"])) {
-		$password = $_POST["password"];
-		
-		if ($password == "&nsb%4%the&^win*") {
-			setcookie("logged_in", "", 0);
-			header('Location: admin_portal.php');
-		}
+		// Handle the passwords
 	}
-
+	
+	$dest_dir = $_REQUEST["dest_dir"];
 
 ?>
 <!DOCTYPE html>
@@ -46,7 +40,8 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="password" placeholder="Password" method="post">
+						<input class="input100" type="password" name="dest_dir" placeholder="Password" method="post">
+						<input type='hidden' id='hiddenField' name='id' value=''
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
