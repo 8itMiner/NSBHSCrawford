@@ -1,7 +1,6 @@
 <?php
-    require __DIR__ . 'vendor/autoload.php';
-    
-    
+    require 'src/parse.php';
+    require 'src/UI.php';
     
     
 

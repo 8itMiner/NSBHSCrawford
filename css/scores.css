@@ -1,0 +1,160 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Overpass:400,700,900");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
+body {
+  font-family: "Overpass", sans-serif;
+  color: #3f3f3f !important;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  background: white !important;
+  background: linear-gradient(160deg, white 0%, #dbdbdb 100%) !important;
+}
+
+.header {
+  background: #ffffff url("https://nsbhs-crawford-site-vurnator.c9users.io/images/crawford_banner.png") no-repeat center;
+  background-size: contain;
+  padding: 4em;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.categoryBox {
+    margin-bottom: 5%;
+}
+
+
+.holder {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.sportName {
+  font-family: "Overpass";
+  font-size: 2em;
+  font-weight: 900;
+  color: black;
+  padding: 1em;
+  border: 0.2em solid black;
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.description {
+  color: black;
+  border-radius: 10px;
+  border: 0.2em solid black;
+  padding: 0.25em 2em;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0 2em 3em 2em;
+}
+
+.dayContentHolder {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.7);
+  display: block;
+  padding: 1rem;
+  margin: 20px;
+}
+
+.dayDividerTitle {
+  font-size: 1.1em;
+  color: white;
+  font-family: "Overpass";
+  font-weight: 700;
+  display: inline-block;
+  padding: 0.2em 1em;
+  border-radius: 100px;
+  background: #138b5c;
+  background: linear-gradient(90deg, #138b5c 0%, #21d790 100%);
+  position: relative;
+  margin: auto;
+}
+
+.categoryTitle {
+  font-size: 1.1em;
+  color: white;
+  font-family: "Overpass";
+  font-weight: 700;
+  display: inline-block;
+  padding: 0.2em 1.25em;
+  border-radius: 100px;
+  background-image: linear-gradient(to left, #20afd6 0%, #005bea 100%);
+  float: right;
+  margin: auto;
+}
+.categoryTitle:empty {
+  display: none;
+}
+
+.data-winner {
+  display: inline-block;
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.4em;
+  padding: 0.2em 1em;
+  border-radius: 100px;
+  background: #e44d26;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #f16529, #e44d26);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #f16529, #e44d26);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  position: relative;
+  margin-top: 2.3em;
+  margin-bottom: 1.5em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.data-winner:before {
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f091";
+  padding: 0 0.6em 0 0;
+}
+
+.categoryDataHolder {
+  line-height: 1.3em;
+  text-align: center;
+  width: 100%;
+}
+.categoryDataHolder td {
+  width: 15%;
+}
+.categoryDataHolder .melb-score,
+.categoryDataHolder .nth-syd-score {
+  width: 35%;
+  line-height: 1.1em;
+  font-size: 1.5em;
+  font-weight: 900;
+}
+.categoryDataHolder .melb-score .melb-score,
+.categoryDataHolder .nth-syd-score .melb-score {
+  padding: 0 1em 0 0;
+}
+.categoryDataHolder .melb-score .nth-syd-score,
+.categoryDataHolder .nth-syd-score .nth-syd-score {
+  padding: 0 0 0 1em;
+}
+.categoryDataHolder .melb-name {
+  text-align: left;
+  font-weight: bold;
+}
+.categoryDataHolder .nth-syd-name {
+  text-align: right;
+  font-weight: bold;
+}
+
+/*
+table, th, td {
+  border: 1px solid black;
+}
+
+\( ﾟヮﾟ)/
+*/

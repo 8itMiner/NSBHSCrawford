@@ -1,18 +1,18 @@
 {
     "name": "Debating",
-    "description": "Cricket is fun!",
+    "description": "Debating is fun!",
     "score_desc": "o/xxx (yy.y) o= wickets, x = runs, 6 = overs bowled",
     "data": [
         {
             "day": 1,
             "categories": {
                 "Unprepared": {
-                    "mlebourne": "3",
+                    "melbourne": "3",
                     "nth_syd": "5",
                     "winner": "nth_syd"
                 },
                 "Prepared": {
-                    "mlebourne": "3",
+                    "melbourne": "3",
                     "nth_syd": "5",
                     "winner": "nth_syd"
                 }
@@ -22,12 +22,12 @@
             "day": 2,
             "categories": {
                 "Unprepared": {
-                    "mlebourne": "3",
+                    "melbourne": "3",
                     "nth_syd": "5",
                     "winner": "nth_syd"
                 },
                 "Prepared": {
-                    "mlebourne": "3",
+                    "melbourne": "3",
                     "nth_syd": "5",
                     "winner": "nth_syd"
                 }
@@ -37,12 +37,12 @@
             "day": 3,
             "categories": {
                 "Unprepared": {
-                    "mlebourne": "3",
+                    "melbourne": "3",
                     "nth_syd": "5",
                     "winner": "nth_syd"
                 },
                 "Prepared": {
-                    "mlebourne": "3",
+                    "melbourne": "3",
                     "nth_syd": "5",
                     "winner": "nth_syd"
                 }
