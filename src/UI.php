@@ -21,22 +21,23 @@
     // generateTemplate generates a page template from the JSON data to make page generation easier
     public static function generateTemplate($json) {
       $parser = new JSONParser($json);
-      $days = $parser->get("key:data");
+      $games = $parser->get("key:data");
       
       // The template object to return
       $template = array(
         "name" => $parser->get("key:name"),
         "description" => $parser->get("key:description"),
         "score_desc" => $parser->get("key:score_desc"),
+        "total_winner" => "Winner: " . ($parser->get("key:winner") == "nth_syd" ? "North Sydney" : ($parser->get("key:winner") == "melbourne" ? "Melbourne" : "Unknown")),
         "score_categories" => array(),
-        "days" => array(),
+        "games" => array(),
         "raw_data" => array()
       );
 
       // Iterate over every block of data, see the .json files      
       foreach ($parser->get("key:data") as $dataOBJ) {
         // Push the day into the days list in the template
-        array_push($template["days"], $dataOBJ["day"]);
+        array_push($template["games"], $dataOBJ["game"]);
         // Parse the rest of the data, the coreOBJ object is the blo
         $scoreOBJ = array();
         
@@ -56,7 +57,7 @@
               "Nth Sydney" => $data["nth_syd"],
               "Winner" => ($data["winner"] == "nth_syd" ? "Nth Sydney": "Melbourne")),
             "category" => $category,
-            "day" => $dataOBJ["day"]
+            "game" => $dataOBJ["game"]
           ));
         }
         // Push the data back into the template
@@ -81,14 +82,14 @@
       $htmlData = array();
       
       // First bild a bunch of HTNML day DOM elements
-      foreach ($template["days"] as $dayID) {
+      foreach ($template["games"] as $gameID) {
         // Build a day block for the HTML block
-        $htmlData[$dayID] = array(new HtmlElement('p', 'Day: '.(string)$dayID, array("class"=>"dayDividerTitle"))); //new HtmlElement('div', $htmlContent, array("class"=>"dayHeader", "id"=>"dayHeader".$dayID));
+        $htmlData[$gameID] = array(new HtmlElement('p', 'Match: '.(string)$gameID, array("class"=>"dayDividerTitle"))); //new HtmlElement('div', $htmlContent, array("class"=>"dayHeader", "id"=>"dayHeader".$dayID));
       }
       
       
       // Add all the data now
-      foreach ($template["raw_data"] as $dayDataBlock) {
+      foreach ($template["raw_data"] as $gameDataBlock) {
         
         // Build a list of categories to be shoved into the days block
         $categories = array();
@@ -109,7 +110,7 @@
         
         
         // Create the categoryBlockContainer
-        foreach($dayDataBlock as $categoryDataBlock) {
+        foreach($gameDataBlock as $categoryDataBlock) {
           
           $categoryName = $categoryDataBlock["category"];
           
@@ -133,21 +134,22 @@
           $categoryHTML = new HtmlElement('div', $categories[$categoryName], $divAttrs);
           
           // Push the category into today's data block
-          array_push($htmlData[$categoryDataBlock["day"]], $categoryHTML);
+          array_push($htmlData[$categoryDataBlock["game"]], $categoryHTML);
         }
       }  
       
       
       // Build actual data objects from our day blocks
-      foreach($htmlData as $dayId=>$currDay) {
-        $dayHTML = new HtmlElement('div', $currDay, array('class'=>'dayContentHolder', 'id'=>'dayContentHolder'.$dayDataBlock));
-        array_push($finHTML, $dayHTML);
+      foreach($htmlData as $gameId=>$currGame) {
+        $gameHTML = new HtmlElement('div', $currGame, array('class'=>'dayContentHolder', 'id'=>'dayContentHolder'.$gameDataBlock));
+        array_push($finHTML, $gameHTML);
       }
       
       $dataDiv = new HtmlElement('div', $finHTML, array('class'=>'scoreHolder'));
       $descriptionDivData = new HtmlElements(array(
         new HtmlElement('p', $template["description"], array("class"=>"sportDescription")),
-        new HtmlElement('p', $template["score_desc"], array("class"=>"scoreDescription"))
+        new HtmlElement('p', $template["score_desc"], array("class"=>"scoreDescription")),
+        new HtmlElement('p', $template["total_winner"], array("class"=>"totalWinner", "style" => "text-align: center;font-size: x-large;font-weight:bold;"))
       ));
    
       return new HtmlElement('div', array(

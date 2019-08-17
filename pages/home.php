@@ -5,6 +5,7 @@
     $f = fopen('../data/total.json', 'r') or exit(header('HTTP/1.1 500 Something went wrong!'));
     $jsonRaw = fread($f, filesize('../data/total.json'));
     $parser = new JSONParser($jsonRaw);
+    fclose($f);
     
     $mhs_score = $parser->get("key:mbhs");
     $nsb_score = $parser->get("key:nsbhs");
@@ -28,7 +29,7 @@
     <div class="header"></div>
 
     
-    <div class="score_holder">
+    <div class="score_holder" style="min-width: 21em! important;">
         <div class="result">
             <p class="school_title result_elm" id="nsb_title">MHS</p>
             <p class="crawford_score result_elm"><?php echo $mhs_score.'  |  '.$nsb_score?></p>

@@ -1,6 +1,12 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Overpass:400,700,900");
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
+
+html {
+  min-height: 100vh;
+}
+
+
 body {
   font-family: "Overpass", sans-serif;
   color: #3f3f3f !important;

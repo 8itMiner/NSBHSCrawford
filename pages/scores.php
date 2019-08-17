@@ -9,8 +9,15 @@
 
     // Load get the data of the requested sport
     $requestedSport = strtolower($_GET["sport"]);
-    $f = fopen('../data/'.$requestedSport.'.json', 'r');
+    // Determine if file exists
+    if (!file_exists('../data/'.$requestedSport.'.json')) {
+        header('Location: 404');
+        exit();    
+    }
+    
+    $f = fopen('../data/'.$requestedSport.'.json', 'r');;
     $jsonRaw = fread($f, filesize('../data/'.$requestedSport.'.json'));
+    fclose($f);
     // Generate the user interface
     $ui = UI::generateUI($jsonRaw);
 ?>
@@ -24,7 +31,7 @@
 	   <link rel="icon" type="image/png" href="../images/crawford_logo.png" />
     </head>
     <body>
-        <div class="header"></div>
+        <div class="header" onclick="window.location = '/pages/home'" style="cursor: pointer;"></div>
         <?php if($ui != null){echo($ui->render());}else{echo('Could not find sport! :(');}?>
     </body>
 </html>

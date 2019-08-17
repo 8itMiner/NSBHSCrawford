@@ -3,5 +3,10 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]
 
-#RewriteCond %{REQUEST_URI} !pages/
-#RewriteRule (.*) /pages/$1 [L]
+DirectoryIndex index.php
+
+Options -Indexes 
+
+
+ErrorDocument 404 /pages/404.php
+ErrorDocument 403 /pages/404.php

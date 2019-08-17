@@ -2,13 +2,33 @@
 	if (!isset($_REQUEST["dest_dir"])) {
 		header("Location: admin_portal");
 	}
-
-	if (isset($_POST["password"])) {
-		// Handle the passwords
-	}
 	
 	$dest_dir = $_REQUEST["dest_dir"];
+	
+	
+	// Determine if user has already been logged in before, if they have take them to the data entry portal
+	if (isset($_COOKIE["logged_in"])) {
+		header("Location: data_entry?file=".$_COOKIE["logged_in"]);
+	}
+	
+	// Handle login requests
+	if (isset($_POST["password"])) {
+		// Handle the passwords
+		$sha = hash('sha256', $_POST["password"]);
+		
+		// Read the passwords json file
+		$f = fopen('../priv/passwords.json', 'r');
+    	$jsonRaw = fread($f, filesize('../priv/passwords.json'));
+    	$password_json = json_decode($jsonRaw, true);
+    	fclose($f);
+    	
+    	$dest_dirL = strtolower($dest_dir);
 
+    	if ($password_json[$dest_dirL] == $sha || $password_json["master"] == $sha) {
+			setcookie('logged_in',$dest_dirL, 0 , "/");    		
+    		header("Location: data_entry?file=".$dest_dirL);
+    	}
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,12 +56,12 @@
 
 				<form class="login100-form validate-form" action="" method="post">
 					<span class="login100-form-title">
-						Sign in to admin portal
+						Sign in to admin portal for <?php echo strtoupper($dest_dir) ?>
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="dest_dir" placeholder="Password" method="post">
-						<input type='hidden' id='hiddenField' name='id' value=''
+						<input class="input100" type="password" name="password" placeholder="Password" method="post">
+						<input type='hidden' id='hiddenField' name='dest_dir' value='<?php echo($dest_dir);?>'
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>

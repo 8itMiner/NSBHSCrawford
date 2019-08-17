@@ -1,3 +1,8 @@
+<?php
+    if (isset($_COOKIE["logged_in"])) {
+		header("Location: data_entry?file=".$_COOKIE["logged_in"]);
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

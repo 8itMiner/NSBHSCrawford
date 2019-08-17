@@ -1,2 +1,9 @@
 vendor/
-*.lock
+*.loc
+
+# passwords
+passwords.json
+priv
+
+
+data/
